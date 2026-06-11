@@ -34,6 +34,7 @@ Farmer -> Lot -> Procurement -> QIR-B -> Bag -> Storage -> Internal QR
 - `docs/phase-1-api-specification.md` - REST API endpoints, permissions, request/response shapes, and API tests
 - `docs/phase-1-ui-workflow-specification.md` - screen-by-screen UI and staff workflow specification
 - `docs/phase-1-testing-qa-specification.md` - test cases, QA process, pilot script, and go/no-go checklist
+- `docs/phase-1-requirements-traceability-matrix.md` - matrix mapping requirements to database/API/UI/tests
 - `docs/phase-1-deployment-operations-guide.md` - hosting, backups, monitoring, go-live, and daily operations guide
 - `docs/phase-1-developer-task-breakdown-sprint-plan.md` - sprint-by-sprint developer task plan
 - `docs/phase-1-staff-training-and-sop-checklist.md` - staff training checklist and daily operating SOP
