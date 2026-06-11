@@ -36,6 +36,7 @@ Farmer -> Lot -> Procurement -> QIR-B -> Bag -> Storage -> Internal QR
 - `docs/phase-1-testing-qa-specification.md` - test cases, QA process, pilot script, and go/no-go checklist
 - `docs/phase-1-deployment-operations-guide.md` - hosting, backups, monitoring, go-live, and daily operations guide
 - `docs/phase-1-developer-task-breakdown-sprint-plan.md` - sprint-by-sprint developer task plan
+- `docs/phase-1-staff-training-and-sop-checklist.md` - staff training checklist and daily operating SOP
 - `docs/phase-2-roadmap-production-packaging-sales.md` - roadmap for hulling, roasting, packaging, public QR, and sales foundation
 - `docs/phase-3-roadmap-finance-bi-crm.md` - roadmap for costing, finance-lite, BI, CRM, and accounting export
 - `scripts/build_phase0_workbook.mjs` - reproducible builder for the Phase-0 Excel workbook
