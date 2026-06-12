@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This document explains how to run the Gulmi Coffee ERP Sprint 0 foundation locally.
+This document explains how to run the Gulmi Coffee ERP Phase 1 foundation locally.
 
 ## Prerequisites
 
@@ -11,6 +11,8 @@ This document explains how to run the Gulmi Coffee ERP Sprint 0 foundation local
 - Git
 
 No global Python or Node installation is required when using Docker.
+
+Default host ports avoid common conflicts with existing local PostgreSQL, Django, and Vite services. Change the `*_HOST_PORT` values in `.env` if your machine already uses these ports.
 
 ## First Run
 
@@ -21,15 +23,15 @@ docker compose up --build
 
 Services:
 
-- Frontend: `http://localhost:5173`
-- Backend health: `http://localhost:8000/api/v1/health`
-- Django admin: `http://localhost:8000/admin`
-- PostgreSQL: `localhost:5432`
+- Frontend: `http://localhost:5174`
+- Backend health: `http://localhost:8001/api/v1/health`
+- Django admin: `http://localhost:8001/admin`
+- PostgreSQL: `localhost:5433`
 
 ## Backend Health Check
 
 ```bash
-curl http://localhost:8000/api/v1/health
+curl http://localhost:8001/api/v1/health
 ```
 
 Expected shape:
@@ -39,7 +41,7 @@ Expected shape:
   "data": {
     "status": "ok",
     "database": "ok",
-    "version": "0.1.0-sprint0",
+    "version": "0.2.0-sprint1",
     "service": "gulmi-coffee-erp-backend"
   },
   "meta": {}

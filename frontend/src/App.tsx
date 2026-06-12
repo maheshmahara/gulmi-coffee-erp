@@ -1,5 +1,6 @@
 import { Activity, ClipboardCheck, Gauge, PackageSearch, QrCode, ShieldCheck, Warehouse } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
+import type { ReactNode } from "react";
 import { HealthBadge } from "./components/HealthBadge";
 import { getMe, getStorageLocations, type CurrentUser, type Role, type StorageLocation } from "./lib/api";
 import { LoginPanel } from "./pages/LoginPanel";
@@ -52,7 +53,7 @@ export function App() {
           <div className="brand-mark">GC</div>
           <div>
             <p className="eyebrow">Gulmi Coffee</p>
-            <h1>ERP Sprint 0</h1>
+            <h1>ERP Sprint 1</h1>
           </div>
         </div>
 
@@ -94,9 +95,9 @@ export function App() {
         <section className="hero-panel">
           <div>
             <p className="eyebrow">Traceability backbone</p>
-            <h3>Farmer -> Lot -> Procurement -> QIR-B -> Bag -> Storage -> Internal QR</h3>
+            <h3>Farmer to Lot to Procurement to QIR-B to Bag to Storage to Internal QR</h3>
             <p>
-              Sprint 0 establishes the shell: backend health, project layout, role-aware navigation, and developer-ready Docker setup.
+              Sprint 1 adds login, current user context, Admin user APIs, storage location APIs, and audit events.
             </p>
           </div>
         </section>
@@ -115,7 +116,7 @@ export function App() {
   );
 }
 
-function StatusCard({ icon, title, body }: { icon: React.ReactNode; title: string; body: string }) {
+function StatusCard({ icon, title, body }: { icon: ReactNode; title: string; body: string }) {
   return (
     <article className="status-card">
       <div className="icon">{icon}</div>

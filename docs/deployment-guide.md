@@ -35,7 +35,7 @@ Before real production use:
 ## Health Check
 
 ```bash
-curl http://localhost:8000/api/v1/health
+curl http://localhost:8001/api/v1/health
 ```
 
 ## Production Notes
@@ -47,4 +47,3 @@ The current production compose is a Sprint 0 baseline. Before go-live, add:
 - monitoring
 - log rotation
 - domain-specific Nginx config
-

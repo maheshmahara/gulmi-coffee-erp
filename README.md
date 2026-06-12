@@ -10,7 +10,7 @@ Farmer -> Lot -> Procurement -> QIR-B -> Bag -> Storage -> Hulling -> Green Batc
 
 ## Current Phase
 
-The project is currently in Phase 1 Sprint 0 implementation:
+The project is currently in Phase 1 Sprint 1 implementation:
 
 - Phase 0: structured workbook prototype
 - Phase 1: MVP software implementation foundation
@@ -71,7 +71,7 @@ Farmer -> Lot -> Procurement -> QIR-B -> Bag -> Storage -> Internal QR
 - `scripts/backup_db.sh` - PostgreSQL backup helper
 - `scripts/restore_db.sh` - PostgreSQL restore helper
 
-## Sprint 0 Quick Start
+## Sprint 1 Quick Start
 
 ```bash
 cp .env.example .env
@@ -81,8 +81,8 @@ docker compose up --build
 Then open:
 
 ```text
-Frontend: http://localhost:5173
-Backend health: http://localhost:8000/api/v1/health
+Frontend: http://localhost:5174
+Backend health: http://localhost:8001/api/v1/health
 ```
 
 ## Core Rules

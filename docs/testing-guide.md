@@ -6,14 +6,14 @@ Required checks:
 
 ```bash
 docker compose up --build
-curl http://localhost:8000/api/v1/health
+curl http://localhost:8001/api/v1/health
 ```
 
 Expected:
 
 - backend health endpoint responds
 - database status is `ok`
-- frontend loads at `http://localhost:5173`
+- frontend loads at `http://localhost:5174`
 
 ## Static Checks Used In This Commit
 
@@ -36,12 +36,12 @@ docker compose run --rm backend python manage.py seed_phase1
 
 Then verify:
 
-1. Open `http://localhost:5173`.
+1. Open `http://localhost:5174`.
 2. Login as `admin` with `ChangeMe123!`.
 3. Confirm session strip shows Admin User.
 4. Open Storage navigation.
 5. Confirm seeded storage locations are listed.
-6. Open `http://localhost:8000/admin` and confirm audit events exist after login/logout.
+6. Open `http://localhost:8001/admin` and confirm audit events exist after login/logout.
 
 ## Full Phase-1 QA
 

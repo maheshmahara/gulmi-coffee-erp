@@ -13,7 +13,7 @@ Defaults:
 - database: `gulmi_erp`
 - user: `gulmi_erp`
 - host: `localhost`
-- port: `5432`
+- port: `5433` when using the local Docker host port, `5432` inside the Docker network
 - output directory: `./backups`
 
 ## Restore
@@ -32,4 +32,3 @@ Before go-live, restore a backup to a fresh database and confirm:
 - login works
 - health endpoint works
 - traceability page works once Phase 1 is complete
-

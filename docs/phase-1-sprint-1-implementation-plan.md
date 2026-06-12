@@ -78,8 +78,8 @@ docker compose run --rm backend python manage.py seed_phase1
 Then open:
 
 ```text
-Frontend: http://localhost:5173
-Health: http://localhost:8000/api/v1/health
+Frontend: http://localhost:5174
+Health: http://localhost:8001/api/v1/health
 ```
 
 Login:
@@ -103,4 +103,3 @@ Sprint 2:
 ```text
 Farmers, Lots, and Procurement
 ```
-
