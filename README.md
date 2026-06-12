@@ -25,6 +25,7 @@ Farmer -> Lot -> Procurement -> QIR-B -> Bag -> Storage -> Internal QR
 
 - `docs/developer-handoff-package.md` - start-here package for developers/software vendors
 - `docs/developer-rfq-and-evaluation-template.md` - RFQ and scoring template for selecting developers/vendors
+- `docs/github-issue-backlog-template.md` - GitHub labels, milestones, and starter issues by sprint
 - `docs/owner-step-by-step-execution-checklist.md` - owner checklist for hiring, supervising, testing, and go-live
 - `docs/project-master-index-and-decision-log.md` - master document index, approved decisions, pending decisions, and risks
 - `docs/gulmi-coffee-erp-sdlc-record.md` - project SDLC record and principles
