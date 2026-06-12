@@ -28,9 +28,9 @@ class StorageLocation(models.Model):
 
     class Meta:
         indexes = [
-            models.Index(fields=["location_type"]),
-            models.Index(fields=["parent_location"]),
-            models.Index(fields=["active"]),
+            models.Index(fields=["location_type"], name="storage_sto_locatio_a41aae_idx"),
+            models.Index(fields=["parent_location"], name="storage_sto_parent__dd7e1f_idx"),
+            models.Index(fields=["active"], name="storage_sto_active_d10565_idx"),
         ]
 
     def __str__(self) -> str:

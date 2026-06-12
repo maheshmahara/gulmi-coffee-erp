@@ -29,3 +29,18 @@ Sprint 1 foundation:
 - frontend login form wired to backend session auth
 - frontend storage locations list wired to API
 - CSRF-exempt session auth class added for local/staging PWA development flow
+
+## 0.3.0-sprint2
+
+Sprint 2 farmer-to-procurement workflow:
+
+- farmer master model/API/UI
+- lot master model/API/UI
+- procurement receipt model/API/UI
+- backend net kg and total NPR calculations
+- procurement post action with posted lock
+- lot moves to `quality_pending` after procurement posting
+- non-Admin/Manager roles cannot see `rate_npr` or `total_npr`
+- audit JSON serialization is UUID-safe
+- seed command creates one sample farmer, lot, and draft procurement
+- backend workflow tests for create/post/lock/sensitive redaction

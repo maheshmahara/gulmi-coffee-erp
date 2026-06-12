@@ -40,11 +40,11 @@ class AuditEvent(models.Model):
 
     class Meta:
         indexes = [
-            models.Index(fields=["table_name", "record_id"]),
-            models.Index(fields=["record_code"]),
-            models.Index(fields=["action"]),
-            models.Index(fields=["actor"]),
-            models.Index(fields=["action_time"]),
+            models.Index(fields=["table_name", "record_id"], name="audit_audit_table_n_4d4074_idx"),
+            models.Index(fields=["record_code"], name="audit_audit_record__ee581f_idx"),
+            models.Index(fields=["action"], name="audit_audit_action_4d6b83_idx"),
+            models.Index(fields=["actor"], name="audit_audit_actor_i_dbbd12_idx"),
+            models.Index(fields=["action_time"], name="audit_audit_action__0acaa3_idx"),
         ]
 
     def __str__(self) -> str:

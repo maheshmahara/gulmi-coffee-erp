@@ -84,3 +84,94 @@ export type StorageLocationListResponse = {
 export async function getStorageLocations(): Promise<StorageLocationListResponse> {
   return request<StorageLocationListResponse>("/storage-locations");
 }
+
+export type Farmer = {
+  id: string;
+  code: string;
+  farmer_name: string;
+  father_or_family_name: string;
+  phone: string;
+  village: string;
+  municipality: string;
+  district: string;
+  ward_no: string;
+  gps_location: string;
+  photo_url: string;
+  bank_or_wallet: string;
+  farmer_type: string;
+  active: boolean;
+  notes: string;
+};
+
+export type Lot = {
+  id: string;
+  code: string;
+  farmer: Farmer;
+  item_type: string;
+  harvest_year: number;
+  status: string;
+  notes: string;
+};
+
+export type Procurement = {
+  id: string;
+  code: string;
+  lot_code: string;
+  farmer_name: string;
+  item_type: string;
+  gross_kg: string;
+  tare_kg: string;
+  net_kg: string;
+  rate_npr: string | null;
+  total_npr: string | null;
+  received_at: string;
+  status: string;
+  posted_at: string | null;
+  notes: string;
+};
+
+export type ListResponse<T> = {
+  data: T[];
+  meta: {
+    total: number;
+  };
+};
+
+export async function getFarmers(): Promise<ListResponse<Farmer>> {
+  return request<ListResponse<Farmer>>("/farmers");
+}
+
+export async function createFarmer(payload: Partial<Farmer>): Promise<{ data: Farmer; meta: Record<string, never> }> {
+  return request<{ data: Farmer; meta: Record<string, never> }>("/farmers", {
+    method: "POST",
+    body: JSON.stringify(payload)
+  });
+}
+
+export async function getLots(): Promise<ListResponse<Lot>> {
+  return request<ListResponse<Lot>>("/lots");
+}
+
+export async function createLot(payload: { farmer_id: string; item_type: string; harvest_year: number; notes?: string }): Promise<{ data: Lot; meta: Record<string, never> }> {
+  return request<{ data: Lot; meta: Record<string, never> }>("/lots", {
+    method: "POST",
+    body: JSON.stringify(payload)
+  });
+}
+
+export async function getProcurements(): Promise<ListResponse<Procurement>> {
+  return request<ListResponse<Procurement>>("/procurements");
+}
+
+export async function createProcurement(payload: { lot_id: string; gross_kg: string; tare_kg: string; rate_npr?: string; notes?: string }): Promise<{ data: Procurement; meta: Record<string, never> }> {
+  return request<{ data: Procurement; meta: Record<string, never> }>("/procurements", {
+    method: "POST",
+    body: JSON.stringify(payload)
+  });
+}
+
+export async function postProcurement(id: string): Promise<{ data: Procurement; meta: Record<string, never> }> {
+  return request<{ data: Procurement; meta: Record<string, never> }>(`/procurements/${id}/post`, {
+    method: "POST"
+  });
+}

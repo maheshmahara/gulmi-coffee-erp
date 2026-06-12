@@ -21,7 +21,7 @@ Response:
   "data": {
     "status": "ok",
     "database": "ok",
-    "version": "0.1.0-sprint0",
+    "version": "0.3.0-sprint2",
     "service": "gulmi-coffee-erp-backend"
   },
   "meta": {}
@@ -68,4 +68,97 @@ The complete planned Phase-1 API contract is documented in:
 
 ```text
 docs/phase-1-api-specification.md
+```
+## Sprint 2 Farmer, Lot, And Procurement Endpoints
+
+All endpoints require an authenticated session.
+
+### Farmers
+
+```text
+GET /api/v1/farmers
+POST /api/v1/farmers
+GET /api/v1/farmers/{id}
+PATCH /api/v1/farmers/{id}
+```
+
+Create/update are Admin/Manager only. List/detail are available to authenticated staff.
+
+Required create fields:
+
+```json
+{
+  "farmer_name": "Ram Bahadur",
+  "phone": "9800000000",
+  "village": "Tamghas",
+  "district": "Gulmi",
+  "farmer_type": "farmer"
+}
+```
+
+### Lots
+
+```text
+GET /api/v1/lots
+POST /api/v1/lots
+GET /api/v1/lots/{id}
+PATCH /api/v1/lots/{id}
+```
+
+Create/update are Admin/Manager only.
+
+Required create fields:
+
+```json
+{
+  "farmer_id": "uuid",
+  "item_type": "parchment",
+  "harvest_year": 2026
+}
+```
+
+### Procurement Receipts
+
+```text
+GET /api/v1/procurements
+POST /api/v1/procurements
+GET /api/v1/procurements/{id}
+PATCH /api/v1/procurements/{id}
+POST /api/v1/procurements/{id}/post
+```
+
+Create/update/post are Admin/Manager only. Posted procurements cannot be edited.
+
+Required create fields:
+
+```json
+{
+  "lot_id": "uuid",
+  "gross_kg": "705.000",
+  "tare_kg": "5.000",
+  "rate_npr": "1300.00"
+}
+```
+
+Server calculations:
+
+```text
+net_kg = gross_kg - tare_kg
+total_npr = net_kg * rate_npr
+```
+
+Sensitive fields:
+
+- Admin/Manager receive `rate_npr` and `total_npr`.
+- Other roles receive `rate_npr: null` and `total_npr: null`.
+
+Posted lock error:
+
+```json
+{
+  "error": {
+    "code": "POSTED_RECORD_LOCKED",
+    "message": "Posted procurement cannot be edited."
+  }
+}
 ```

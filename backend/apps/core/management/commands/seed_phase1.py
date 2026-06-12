@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
 from django.db import transaction
 
+from apps.procurement.models import Farmer, Lot, ProcurementReceipt
 from apps.storage.models import StorageLocation
 
 
@@ -16,6 +17,7 @@ class Command(BaseCommand):
         password = options["password"]
         self.seed_users(password)
         self.seed_locations()
+        self.seed_procurement_demo()
         self.stdout.write(self.style.SUCCESS("Phase-1 seed data ready."))
 
     def seed_users(self, password):
@@ -73,3 +75,58 @@ class Command(BaseCommand):
             )
             if created:
                 self.stdout.write(f"Created location {location.code} / {location.location_name}")
+
+    def seed_procurement_demo(self):
+        created_by = get_user_model().objects.filter(username="admin").first()
+        farmer, farmer_created = Farmer.objects.get_or_create(
+            code="FARM-2026-000001",
+            defaults={
+                "farmer_name": "Ram Bahadur",
+                "father_or_family_name": "Bahadur Family",
+                "phone": "9800000101",
+                "village": "Tamghas",
+                "municipality": "Resunga",
+                "district": "Gulmi",
+                "ward_no": "4",
+                "farmer_type": "farmer",
+                "active": True,
+                "notes": "Sample parchment supplier for Sprint 2 testing.",
+                "created_by": created_by,
+                "updated_by": created_by,
+            },
+        )
+        if farmer_created:
+            self.stdout.write(f"Created farmer {farmer.code} / {farmer.farmer_name}")
+
+        lot, lot_created = Lot.objects.get_or_create(
+            code="LOT-2026-000001",
+            defaults={
+                "farmer": farmer,
+                "item_type": "parchment",
+                "harvest_year": 2026,
+                "status": "draft",
+                "notes": "Sample lot for procurement workflow testing.",
+                "created_by": created_by,
+                "updated_by": created_by,
+            },
+        )
+        if lot_created:
+            self.stdout.write(f"Created lot {lot.code} / {lot.item_type}")
+
+        procurement, procurement_created = ProcurementReceipt.objects.get_or_create(
+            code="PROC-2026-000001",
+            defaults={
+                "lot": lot,
+                "farmer": farmer,
+                "item_type": lot.item_type,
+                "gross_kg": "705.000",
+                "tare_kg": "5.000",
+                "rate_npr": "1300.00",
+                "received_by": created_by,
+                "created_by": created_by,
+                "updated_by": created_by,
+                "notes": "Sample draft receipt. Post from the Procurements screen.",
+            },
+        )
+        if procurement_created:
+            self.stdout.write(f"Created procurement {procurement.code} / {procurement.net_kg} kg")

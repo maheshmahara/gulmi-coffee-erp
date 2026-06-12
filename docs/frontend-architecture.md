@@ -36,6 +36,16 @@ Sprint 0 provides:
 - backend health badge
 - responsive mobile layout foundation
 
+## Sprint 2 UI
+
+Sprint 2 adds API-backed workflow panels:
+
+- Farmers list/create
+- Lots list/create
+- Procurements list/create/post
+- posted receipt locked state
+- cost columns hidden outside Admin/Manager roles
+
 ## Phase-1 UI Direction
 
 The frontend must implement screens from:
@@ -60,9 +70,12 @@ The initial API client is in:
 frontend/src/lib/api.ts
 ```
 
-Sprint 1 should add authentication methods for:
+Implemented API client methods include:
 
 - `POST /api/v1/auth/login`
 - `POST /api/v1/auth/logout`
 - `GET /api/v1/me`
-
+- `GET/POST /api/v1/farmers`
+- `GET/POST /api/v1/lots`
+- `GET/POST /api/v1/procurements`
+- `POST /api/v1/procurements/{id}/post`

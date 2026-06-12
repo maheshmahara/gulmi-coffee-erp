@@ -10,7 +10,7 @@ Farmer -> Lot -> Procurement -> QIR-B -> Bag -> Storage -> Hulling -> Green Batc
 
 ## Current Phase
 
-The project is currently in Phase 1 Sprint 1 implementation:
+The project is currently in Phase 1 Sprint 2 implementation:
 
 - Phase 0: structured workbook prototype
 - Phase 1: MVP software implementation foundation
@@ -33,6 +33,7 @@ Farmer -> Lot -> Procurement -> QIR-B -> Bag -> Storage -> Internal QR
 - `docs/phase-1-mvp-software-requirements.md` - developer-facing MVP software requirements
 - `docs/phase-1-sprint-0-implementation-plan.md` - Sprint 0 implementation plan and verification record
 - `docs/phase-1-sprint-1-implementation-plan.md` - Sprint 1 implementation plan and verification record
+- `docs/phase-1-sprint-2-implementation-plan.md` - Sprint 2 farmer, lot, and procurement implementation record
 - `docs/phase-1-database-schema.md` - PostgreSQL schema, constraints, indexes, and migration order
 - `docs/phase-1-api-specification.md` - REST API endpoints, permissions, request/response shapes, and API tests
 - `docs/phase-1-ui-workflow-specification.md` - screen-by-screen UI and staff workflow specification
@@ -71,7 +72,7 @@ Farmer -> Lot -> Procurement -> QIR-B -> Bag -> Storage -> Internal QR
 - `scripts/backup_db.sh` - PostgreSQL backup helper
 - `scripts/restore_db.sh` - PostgreSQL restore helper
 
-## Sprint 1 Quick Start
+## Sprint 2 Quick Start
 
 ```bash
 cp .env.example .env
@@ -83,6 +84,12 @@ Then open:
 ```text
 Frontend: http://localhost:5174
 Backend health: http://localhost:8001/api/v1/health
+```
+
+Seed demo users, storage, and a sample procurement chain:
+
+```bash
+docker compose run --rm backend python manage.py seed_phase1
 ```
 
 ## Core Rules

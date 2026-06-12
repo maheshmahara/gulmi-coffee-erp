@@ -23,6 +23,7 @@ backend/
     audit/
     common/
     core/
+    procurement/
     storage/
 ```
 
@@ -69,6 +70,25 @@ Sprint 1 endpoints:
 - `POST /api/v1/storage-locations`
 - `GET /api/v1/storage-locations/{id}`
 - `PATCH /api/v1/storage-locations/{id}`
+
+### procurement
+
+Defines the Sprint 2 farmer-to-procurement workflow:
+
+- `Farmer`
+- `Lot`
+- `ProcurementReceipt`
+- `ProcurementPostingService`
+
+Sprint 2 endpoints:
+
+- `GET /api/v1/farmers`
+- `POST /api/v1/farmers`
+- `GET /api/v1/lots`
+- `POST /api/v1/lots`
+- `GET /api/v1/procurements`
+- `POST /api/v1/procurements`
+- `POST /api/v1/procurements/{id}/post`
 
 ## Service Layer Rule
 

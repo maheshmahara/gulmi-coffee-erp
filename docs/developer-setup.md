@@ -41,7 +41,7 @@ Expected shape:
   "data": {
     "status": "ok",
     "database": "ok",
-    "version": "0.2.0-sprint1",
+    "version": "0.3.0-sprint2",
     "service": "gulmi-coffee-erp-backend"
   },
   "meta": {}
@@ -64,9 +64,9 @@ docker compose run --rm backend python manage.py migrate
 docker compose run --rm backend python manage.py createsuperuser
 ```
 
-## Seed Phase-1 Users And Locations
+## Seed Phase-1 Users, Locations, And Demo Procurement
 
-After migrations, create default Sprint 1 users and storage locations:
+After migrations, create default users, storage locations, and one sample farmer/lot/procurement chain:
 
 ```bash
 docker compose run --rm backend python manage.py seed_phase1
@@ -128,3 +128,15 @@ Sprint 1 adds:
 - seed command for default users and locations
 - frontend login form
 - frontend storage locations list
+
+## Sprint 2 Procurement Foundation
+
+Sprint 2 adds:
+
+- farmer master API/UI
+- lot master API/UI
+- procurement receipt API/UI
+- backend net kg and total NPR calculation
+- procurement post action
+- posted procurement lock
+- Admin/Manager-only cost visibility

@@ -43,6 +43,27 @@ Then verify:
 5. Confirm seeded storage locations are listed.
 6. Open `http://localhost:8001/admin` and confirm audit events exist after login/logout.
 
+## Sprint 2 Verification
+
+Run:
+
+```bash
+docker compose run --rm backend python manage.py makemigrations --check --dry-run
+docker compose run --rm backend python manage.py migrate
+docker compose run --rm backend python manage.py test apps.procurement
+docker compose run --rm frontend npm run build
+```
+
+Manual smoke:
+
+1. Run `docker compose run --rm backend python manage.py seed_phase1`.
+2. Open `http://localhost:5174`.
+3. Login as `admin` with `ChangeMe123!`.
+4. Open Farmers, Lots, and Procurements.
+5. Confirm the sample draft procurement appears.
+6. Click Post and confirm the receipt becomes locked.
+7. Switch preview role to Viewer and confirm rate/total columns are hidden.
+
 ## Full Phase-1 QA
 
 Use:

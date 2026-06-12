@@ -82,7 +82,9 @@ h1 {
 }
 
 .role-switcher select,
-.login-panel input {
+.login-panel input,
+.inline-form input,
+.inline-form select {
   width: 100%;
   border: 1px solid #ced9d1;
   border-radius: 6px;
@@ -244,6 +246,48 @@ h1 {
   padding: 12px;
 }
 
+.inline-form {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(120px, 1fr));
+  gap: 10px;
+  margin: 18px 0 8px;
+}
+
+.inline-form button,
+.table-action {
+  border: 0;
+  border-radius: 6px;
+  background: #1f6f4a;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 10px 12px;
+}
+
+.inline-form button:disabled {
+  background: #b9c7bd;
+  cursor: not-allowed;
+}
+
+.status-pill {
+  border-radius: 999px;
+  background: #edf1ee;
+  color: #425247;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 8px;
+}
+
+.status-pill.success {
+  background: #dff3dc;
+  color: #1f6f4a;
+}
+
+.status-pill.warning {
+  background: #fff1c7;
+  color: #805b00;
+}
+
 .login-panel button:disabled {
   background: #b9c7bd;
   cursor: not-allowed;
@@ -290,7 +334,8 @@ th {
 
   .grid,
   .metric-grid,
-  .login-panel {
+  .login-panel,
+  .inline-form {
     grid-template-columns: 1fr;
   }
 

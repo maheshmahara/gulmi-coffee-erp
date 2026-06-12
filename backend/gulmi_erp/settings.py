@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     "apps.accounts",
     "apps.audit",
     "apps.core",
+    "apps.procurement",
     "apps.storage",
 ]
 
@@ -107,11 +108,7 @@ REST_FRAMEWORK = {
     ],
 }
 
-CORS_ALLOWED_ORIGINS = [
-    origin.strip()
-    for origin in env("CORS_ALLOWED_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173").split(",")
-    if origin.strip()
-]
+CORS_ALLOWED_ORIGINS = [origin.strip() for origin in env("CORS_ALLOWED_ORIGINS", "http://localhost:5174,http://127.0.0.1:5174").split(",") if origin.strip()]
 CORS_ALLOW_CREDENTIALS = True
 
-APP_VERSION = env("APP_VERSION", "0.1.0-sprint0")
+APP_VERSION = env("APP_VERSION", "0.3.0-sprint2")
