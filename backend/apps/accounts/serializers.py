@@ -22,6 +22,7 @@ class UserListSerializer(serializers.ModelSerializer):
 class UserCreateSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, min_length=8)
     role = serializers.ChoiceField(choices=UserRole.choices)
+    username = serializers.CharField(required=False, allow_blank=True)
 
     class Meta:
         model = AppUser
@@ -32,7 +33,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
         password = validated_data.pop("password")
         user = AppUser(**validated_data)
         if not user.username:
-            user.username = validated_data.get("phone") or validated_data.get("email")
+            user.username = validated_data.get("phone") or validated_data.get("email") or validated_data.get("full_name").lower().replace(" ", ".")
         user.set_password(password)
         user.save()
         return user

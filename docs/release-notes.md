@@ -28,3 +28,4 @@ Sprint 1 foundation:
 - Phase-1 seed command for default users and locations
 - frontend login form wired to backend session auth
 - frontend storage locations list wired to API
+- CSRF-exempt session auth class added for local/staging PWA development flow

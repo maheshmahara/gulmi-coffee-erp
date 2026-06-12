@@ -12,7 +12,7 @@
 
 ## Sprint 1
 
-- Login uses session authentication for the PWA foundation; token/JWT support is not implemented.
+- Login uses CSRF-exempt session authentication for the local/staging PWA foundation; production must add explicit CSRF handling or token/JWT support.
 - User management UI is not implemented yet, though backend endpoints exist.
 - Storage location create/edit UI is not implemented yet, though backend endpoints exist.
 - Audit code generation is count-based and must be replaced with a locked counter before high-concurrency production use.
