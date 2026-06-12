@@ -32,6 +32,7 @@ Farmer -> Lot -> Procurement -> QIR-B -> Bag -> Storage -> Internal QR
 - `docs/phase-0-workbook-validation.md` - workbook tabs, formulas, dropdowns, and validation rules
 - `docs/phase-1-mvp-software-requirements.md` - developer-facing MVP software requirements
 - `docs/phase-1-sprint-0-implementation-plan.md` - Sprint 0 implementation plan and verification record
+- `docs/phase-1-sprint-1-implementation-plan.md` - Sprint 1 implementation plan and verification record
 - `docs/phase-1-database-schema.md` - PostgreSQL schema, constraints, indexes, and migration order
 - `docs/phase-1-api-specification.md` - REST API endpoints, permissions, request/response shapes, and API tests
 - `docs/phase-1-ui-workflow-specification.md` - screen-by-screen UI and staff workflow specification

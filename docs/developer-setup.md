@@ -62,6 +62,32 @@ docker compose run --rm backend python manage.py migrate
 docker compose run --rm backend python manage.py createsuperuser
 ```
 
+## Seed Phase-1 Users And Locations
+
+After migrations, create default Sprint 1 users and storage locations:
+
+```bash
+docker compose run --rm backend python manage.py seed_phase1
+```
+
+Default usernames:
+
+```text
+admin
+manager
+quality
+storage
+viewer
+```
+
+Default password:
+
+```text
+ChangeMe123!
+```
+
+Use these only for local/staging development. Change production credentials before go-live.
+
 ## Stop
 
 ```bash
@@ -89,3 +115,14 @@ Sprint 0 provides:
 - code generator/sensitive field service skeletons
 - deployment and backup script skeletons
 
+## Sprint 1 Foundation
+
+Sprint 1 adds:
+
+- login/logout/current user endpoints
+- user list/create/update endpoints for Admin
+- audit event writes for login/logout/user/storage actions
+- storage location model/API
+- seed command for default users and locations
+- frontend login form
+- frontend storage locations list

@@ -26,6 +26,18 @@ class CodeGeneratorService:
         year = (at or datetime.now()).year
         return GeneratedCode(prefix=prefix, year=year, sequence=sequence).value
 
+    def next_for_model(self, *, model, prefix: str, at: datetime | None = None) -> str:
+        """Generate a readable code for Sprint 1.
+
+        This count-based implementation is acceptable for the single-user Sprint 1
+        foundation. A locked counter table should replace it before high-concurrency
+        production use.
+        """
+
+        year = (at or datetime.now()).year
+        sequence = model.objects.filter(code__startswith=f"{prefix}-{year}-").count() + 1
+        return GeneratedCode(prefix=prefix, year=year, sequence=sequence).value
+
 
 class SensitiveFieldFilterService:
     """Backend-only guard for Admin/Manager financial field visibility."""

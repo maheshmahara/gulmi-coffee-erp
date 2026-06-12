@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     "apps.accounts",
     "apps.audit",
     "apps.core",
+    "apps.storage",
 ]
 
 MIDDLEWARE = [
@@ -111,5 +112,6 @@ CORS_ALLOWED_ORIGINS = [
     for origin in env("CORS_ALLOWED_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173").split(",")
     if origin.strip()
 ]
+CORS_ALLOW_CREDENTIALS = True
 
 APP_VERSION = env("APP_VERSION", "0.1.0-sprint0")

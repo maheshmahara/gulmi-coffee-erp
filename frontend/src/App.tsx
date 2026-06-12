@@ -1,15 +1,16 @@
 import { Activity, ClipboardCheck, Gauge, PackageSearch, QrCode, ShieldCheck, Warehouse } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { HealthBadge } from "./components/HealthBadge";
+import { getMe, getStorageLocations, type CurrentUser, type Role, type StorageLocation } from "./lib/api";
 import { LoginPanel } from "./pages/LoginPanel";
-
-type Role = "admin" | "manager" | "quality" | "storage" | "viewer";
 
 const navByRole: Record<Role, string[]> = {
   admin: ["Dashboard", "QR Scan", "Farmers", "Lots", "Procurements", "QIR-B", "Bags", "Storage", "Environment", "Exceptions", "Inventory", "Audit", "Settings"],
   manager: ["Dashboard", "QR Scan", "Farmers", "Lots", "Procurements", "QIR-B", "Bags", "Storage", "Environment", "Exceptions", "Inventory", "Audit"],
   quality: ["Dashboard", "QR Scan", "Farmers", "Lots", "QIR-B", "Exceptions"],
   storage: ["Dashboard", "QR Scan", "Bags", "Storage", "Environment", "Exceptions", "Inventory"],
+  production: ["Dashboard", "QR Scan", "Bags", "Inventory"],
+  sales: ["Dashboard", "QR Scan", "Inventory"],
   viewer: ["Dashboard", "QR Scan", "Farmers", "Lots", "Bags", "Inventory"]
 };
 
@@ -18,13 +19,25 @@ const roleLabels: Record<Role, string> = {
   manager: "Manager",
   quality: "Quality",
   storage: "Storage",
+  production: "Production",
+  sales: "Sales",
   viewer: "Viewer"
 };
 
 export function App() {
   const [role, setRole] = useState<Role>("admin");
+  const [user, setUser] = useState<CurrentUser | null>(null);
   const [activeNav, setActiveNav] = useState("Dashboard");
   const nav = useMemo(() => navByRole[role], [role]);
+
+  useEffect(() => {
+    getMe()
+      .then((response) => {
+        setUser(response.data.user);
+        setRole(response.data.user.role);
+      })
+      .catch(() => undefined);
+  }, []);
 
   useEffect(() => {
     if (!nav.includes(activeNav)) {
@@ -72,6 +85,12 @@ export function App() {
           <HealthBadge />
         </header>
 
+        {user ? (
+          <div className="session-strip">
+            Logged in as <strong>{user.full_name}</strong> ({roleLabels[user.role]}) · {user.code ?? user.username}
+          </div>
+        ) : null}
+
         <section className="hero-panel">
           <div>
             <p className="eyebrow">Traceability backbone</p>
@@ -89,8 +108,8 @@ export function App() {
           <StatusCard icon={<QrCode />} title="Role-aware QR" body="Logged-in staff see internal traceability. Public visitors see only safe information." />
         </section>
 
-        {activeNav === "Dashboard" ? <DashboardPreview role={role} /> : <PlaceholderScreen name={activeNav} />}
-        <LoginPanel />
+        {activeNav === "Dashboard" ? <DashboardPreview role={role} /> : activeNav === "Storage" ? <StorageLocationsPanel /> : <PlaceholderScreen name={activeNav} />}
+        <LoginPanel user={user} onLogin={(nextUser) => { setUser(nextUser); setRole(nextUser.role); }} onLogout={() => setUser(null)} />
       </section>
     </main>
   );
@@ -103,6 +122,62 @@ function StatusCard({ icon, title, body }: { icon: React.ReactNode; title: strin
       <h4>{title}</h4>
       <p>{body}</p>
     </article>
+  );
+}
+
+function StorageLocationsPanel() {
+  const [locations, setLocations] = useState<StorageLocation[]>([]);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    getStorageLocations()
+      .then((response) => {
+        setLocations(response.data);
+        setError("");
+      })
+      .catch((err) => setError(err instanceof Error ? err.message : "Could not load storage locations"));
+  }, []);
+
+  return (
+    <section className="panel">
+      <div className="panel-heading">
+        <Warehouse />
+        <div>
+          <h3>Storage locations</h3>
+          <p>Seed default locations with <code>python manage.py seed_phase1</code>.</p>
+        </div>
+      </div>
+      {error ? <p className="form-error">{error}</p> : null}
+      <div className="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Code</th>
+              <th>Name</th>
+              <th>Type</th>
+              <th>Parent</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {locations.map((location) => (
+              <tr key={location.id}>
+                <td>{location.code}</td>
+                <td>{location.location_name}</td>
+                <td>{location.location_type}</td>
+                <td>{location.parent_location_code ?? "-"}</td>
+                <td>{location.active ? "active" : "inactive"}</td>
+              </tr>
+            ))}
+            {locations.length === 0 && !error ? (
+              <tr>
+                <td colSpan={5}>No locations yet. Run the seed command after migrations.</td>
+              </tr>
+            ) : null}
+          </tbody>
+        </table>
+      </div>
+    </section>
   );
 }
 

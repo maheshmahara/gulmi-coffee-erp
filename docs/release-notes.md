@@ -17,3 +17,14 @@ Initial implementation foundation:
 - backup and restore script skeletons
 - developer/architecture/deployment docs
 
+## 0.2.0-sprint1
+
+Sprint 1 foundation:
+
+- login/logout/current user API
+- Admin user list/create/update API
+- real audit event writes for login/logout/user/storage actions
+- storage location model and API
+- Phase-1 seed command for default users and locations
+- frontend login form wired to backend session auth
+- frontend storage locations list wired to API

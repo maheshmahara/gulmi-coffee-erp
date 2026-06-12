@@ -23,6 +23,7 @@ backend/
     audit/
     common/
     core/
+    storage/
 ```
 
 ## Sprint 0 Apps
@@ -58,6 +59,17 @@ Contains the public health endpoint:
 GET /api/v1/health
 ```
 
+### storage
+
+Defines `StorageLocation`, the first Phase-1 operational master data model.
+
+Sprint 1 endpoints:
+
+- `GET /api/v1/storage-locations`
+- `POST /api/v1/storage-locations`
+- `GET /api/v1/storage-locations/{id}`
+- `PATCH /api/v1/storage-locations/{id}`
+
 ## Service Layer Rule
 
 Business logic must live in service classes, not directly in views.
@@ -77,4 +89,3 @@ Planned services:
 ## Sensitive Field Rule
 
 Sensitive financial fields must be filtered in backend serializers/services. Frontend-only hiding is not acceptable.
-

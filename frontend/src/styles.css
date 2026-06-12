@@ -134,6 +134,14 @@ h1 {
   color: #9b2f20;
 }
 
+.session-strip {
+  border: 1px solid #dce5dd;
+  border-radius: 8px;
+  background: #eef7ec;
+  margin-bottom: 20px;
+  padding: 12px 14px;
+}
+
 .hero-panel,
 .panel,
 .status-card {
@@ -230,9 +238,45 @@ h1 {
 .login-panel button {
   border: 0;
   border-radius: 6px;
-  background: #b9c7bd;
+  background: #1f6f4a;
   color: #ffffff;
+  cursor: pointer;
   padding: 12px;
+}
+
+.login-panel button:disabled {
+  background: #b9c7bd;
+  cursor: not-allowed;
+}
+
+.form-error {
+  border-radius: 6px;
+  background: #f8dfd9;
+  color: #9b2f20 !important;
+  margin: 0;
+  padding: 10px;
+}
+
+.table-wrap {
+  margin-top: 18px;
+  overflow-x: auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  border-bottom: 1px solid #dce5dd;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  color: #425247;
+  font-size: 13px;
 }
 
 @media (max-width: 900px) {

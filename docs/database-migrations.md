@@ -6,12 +6,14 @@ Sprint 0 introduces:
 
 - custom `accounts.AppUser`
 - `audit.AuditEvent`
+- `storage.StorageLocation`
 
 Migrations:
 
 ```text
 backend/apps/accounts/migrations/0001_initial.py
 backend/apps/audit/migrations/0001_initial.py
+backend/apps/storage/migrations/0001_initial.py
 ```
 
 ## Migration Rule
@@ -34,4 +36,3 @@ Do not manually change production database structure.
 10. exceptions
 11. inventory ledger
 12. reports/views
-
