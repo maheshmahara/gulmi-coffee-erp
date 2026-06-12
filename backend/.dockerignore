@@ -1,9 +1,5 @@
-node_modules
-~$*.xlsx
-.env
-backups/
 __pycache__/
 *.pyc
 .pytest_cache/
-dist/
+.venv/
 staticfiles/

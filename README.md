@@ -10,10 +10,10 @@ Farmer -> Lot -> Procurement -> QIR-B -> Bag -> Storage -> Hulling -> Green Batc
 
 ## Current Phase
 
-The project is currently in Phase 0 and Phase 1 planning:
+The project is currently in Phase 1 Sprint 0 implementation:
 
 - Phase 0: structured workbook prototype
-- Phase 1: MVP software requirements
+- Phase 1: MVP software implementation foundation
 
 The Phase-1 MVP scope is:
 
@@ -31,6 +31,7 @@ Farmer -> Lot -> Procurement -> QIR-B -> Bag -> Storage -> Internal QR
 - `docs/gulmi-coffee-erp-sdlc-record.md` - project SDLC record and principles
 - `docs/phase-0-workbook-validation.md` - workbook tabs, formulas, dropdowns, and validation rules
 - `docs/phase-1-mvp-software-requirements.md` - developer-facing MVP software requirements
+- `docs/phase-1-sprint-0-implementation-plan.md` - Sprint 0 implementation plan and verification record
 - `docs/phase-1-database-schema.md` - PostgreSQL schema, constraints, indexes, and migration order
 - `docs/phase-1-api-specification.md` - REST API endpoints, permissions, request/response shapes, and API tests
 - `docs/phase-1-ui-workflow-specification.md` - screen-by-screen UI and staff workflow specification
@@ -41,8 +42,47 @@ Farmer -> Lot -> Procurement -> QIR-B -> Bag -> Storage -> Internal QR
 - `docs/phase-1-staff-training-and-sop-checklist.md` - staff training checklist and daily operating SOP
 - `docs/phase-2-roadmap-production-packaging-sales.md` - roadmap for hulling, roasting, packaging, public QR, and sales foundation
 - `docs/phase-3-roadmap-finance-bi-crm.md` - roadmap for costing, finance-lite, BI, CRM, and accounting export
+- `docs/developer-setup.md` - local Docker setup and first-run instructions
+- `docs/backend-architecture.md` - backend project structure and service-layer rules
+- `docs/frontend-architecture.md` - frontend project structure and UI shell notes
+- `docs/database-migrations.md` - migration plan and current schema migrations
+- `docs/api-reference.md` - implemented API reference, starting with health
+- `docs/deployment-guide.md` - local and production-style deployment commands
+- `docs/backup-restore-guide.md` - database backup and restore commands
+- `docs/testing-guide.md` - Sprint 0 verification and future test commands
+- `docs/user-manual-admin.md` - Admin user manual starter
+- `docs/user-manual-manager.md` - Manager user manual starter
+- `docs/user-manual-quality.md` - Quality user manual starter
+- `docs/user-manual-storage.md` - Storage user manual starter
+- `docs/release-notes.md` - release notes
+- `docs/known-limitations.md` - current known limitations
 - `scripts/build_phase0_workbook.mjs` - reproducible builder for the Phase-0 Excel workbook
 - `outputs/gulmi-coffee-erp-phase-0/gulmi-coffee-erp-phase-0-workbook.xlsx` - generated Phase-0 workbook
+
+## Implementation Structure
+
+- `backend/` - Django + Django REST Framework backend foundation
+- `frontend/` - React + TypeScript PWA frontend foundation
+- `infra/nginx/` - Nginx reverse proxy baseline
+- `docker-compose.yml` - local development stack
+- `docker-compose.prod.yml` - production-style stack baseline
+- `.env.example` - environment variable template
+- `scripts/backup_db.sh` - PostgreSQL backup helper
+- `scripts/restore_db.sh` - PostgreSQL restore helper
+
+## Sprint 0 Quick Start
+
+```bash
+cp .env.example .env
+docker compose up --build
+```
+
+Then open:
+
+```text
+Frontend: http://localhost:5173
+Backend health: http://localhost:8000/api/v1/health
+```
 
 ## Core Rules
 
